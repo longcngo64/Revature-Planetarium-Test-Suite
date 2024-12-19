@@ -2,14 +2,14 @@
 Feature: Planet Creation
     As a user I want to add new planets to the Planetarium so I can update my findings
 
-    Background: Registration Starting Actions
+    Background: Planet Creation Starting Actions
         Given   the user has logined
         And     the user is on the home page
 
     @PR4 @PR5
     Scenario: Users create a new planet with valid data
         When    the user provides a valid planet name, "<planet_name>"
-        And     the user optionally provides a valid filetype "<file_name>"
+        And     the user optionally provides a  file with a valid filetype "<file_name>"
         And     the user creates the planet
         Then    the table of planets and moon will refresh
         And     the user should see the newly created planet
@@ -22,9 +22,9 @@ Feature: Planet Creation
 
     # these tags will apply to each run of the Scenario Outline determined by the Examples table data
     @PR1 @PR2 @PR3 @PR6
-    Scenario Outline: Users can not register a new account with invalid data
-        When    the user provides an invalid planet name, "<planet_name>"
-        And     the user optionally provides an invalid filetype "<file_name>"
+    Scenario Outline: Users can not create a new planet with invalid data
+        When    the user provides a planet name, "<planet_name>"
+        And     the user optionally provides a file with some filetype "<file_name>"
         And     the user creates the planet
         Then    the user should get a browser alert "<alert_msg_planet_creation>"
         And     the user should stay at the home page
