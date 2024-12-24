@@ -9,7 +9,7 @@ Feature: Planet Creation
     @PR4 @PR5
     Scenario: Users create a new planet with valid data
         When    the user provides a valid planet name, "<planet_name>"
-        And     the user optionally provides a  file with a valid filetype "<file_name>"
+        And     the user optionally provides a file with a valid filetype "<file_name>"
         And     the user creates the planet
         Then    the table of planets and moon will refresh
         And     the user should see the newly created planet

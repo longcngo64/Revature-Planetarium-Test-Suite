@@ -1,4 +1,3 @@
-
 @US4 @SR2
 Feature: Moon Creation
     As a user I want to add new moons to the Planetarium so I can update my findings
