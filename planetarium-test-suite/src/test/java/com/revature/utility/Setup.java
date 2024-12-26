@@ -15,7 +15,7 @@ public class Setup {
         resetTestDatabase();
     }
     public static void resetTestDatabase() {
-        Path sql = Path.of("src/test/resources/setup-reset.sql");
+        Path sql = Path.of("planetarium-test-suite/src/test/resources/setup-reset.sql");
         StringBuilder sqlBuilder = new StringBuilder();
         try (Connection conn = DatabaseConnector.getConnection(); Stream<String> lines = Files.lines(sql)) {
             conn.setAutoCommit(false);

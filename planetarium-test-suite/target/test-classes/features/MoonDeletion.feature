@@ -3,7 +3,7 @@ Feature: Moon Deletion
     As a user I want to delete moons to the Planetarium so I can correct my findings
 
     Background: Moon Deletion Starting Actions
-        Given   the user has logined
+        Given   the user has logged in
         And     the user is on the home page
 
     @MR4 @MR5
