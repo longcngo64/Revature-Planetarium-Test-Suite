@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -17,8 +18,29 @@ public class HomePage {
     @FindBy(id = "logoutButton")
     private WebElement logoutButton;
 
-    @FindBy(id = "createButton")
-    private WebElement createButton;
+    @FindBy(id = "locationSelect")
+    private WebElement locationSelect;
+
+    @FindBy(id = "planetNameInput")
+    private WebElement planetNameInput;
+
+    @FindBy(id = "planetImageInput")
+    private WebElement planetImageInput;
+
+    @FindBy(id = "moonNameInput")
+    private WebElement moonNameInput;
+
+    @FindBy(id = "moonImageInput")
+    private WebElement moonImageInput;
+
+    @FindBy(id = "orbitedPlanetInput")
+    private WebElement orbitedPlanetInput;
+
+    @FindBy(className = "submitButton")
+    private WebElement submitButton;
+
+    @FindBy(id = "deleteInput")
+    private WebElement deleteInput;
 
     @FindBy(id = "deleteButton")
     private WebElement deleteButton;
@@ -47,14 +69,84 @@ public class HomePage {
         logoutButton.click();
     }
 
-    public void deleteCelestialBody() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCelestialBody'");
+    public void selectCelestialBody(String body)
+    {
+        Select selectBody = new Select(locationSelect);
+        selectBody.selectByValue(body);
     }
 
-    public void enterMoonName(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enterMoonName'");
+    public void enterPlanetName(String string) 
+    {
+        planetNameInput.sendKeys(string);
+    }
+
+    public void choosePlanetImage(String filepath)
+    {
+        planetImageInput.sendKeys(filepath);
+    }
+
+    public void enterMoonName(String string) 
+    {
+        moonNameInput.sendKeys(string);
+    }
+
+    public void chooseMoonImage(String filepath)
+    {
+        moonImageInput.sendKeys(filepath);
+    }
+
+    public void enterPlanetID(String string) 
+    {
+        orbitedPlanetInput.sendKeys(string);
+    }
+
+    public void submitCelestialBody()
+    {
+        submitButton.click();
+    }
+
+    public void addPlanet(String planetName, String filepath)
+    {
+        enterPlanetName(planetName);
+        if (filepath != "") 
+        {
+            choosePlanetImage(filepath);
+        }
+        submitCelestialBody();
+    }
+
+    public void addMoon(String moonName, String filepath)
+    {
+        enterPlanetName(moonName);
+        if (filepath != "") 
+        {
+            choosePlanetImage(filepath);
+        }
+        submitCelestialBody();
+    }
+
+    public void enterDeletionInput(String string) 
+    {
+        deleteInput.sendKeys(string);
+    }
+
+    public void deleteCelestialBody() 
+    {
+        deleteButton.click();
+    }
+
+    public void deletePlanet(String planetName)
+    {
+        selectCelestialBody("planet");
+        enterDeletionInput(planetName);
+        deleteCelestialBody();
+    }
+
+    public void deleteMoon(String moonName)
+    {
+        selectCelestialBody("moon");
+        enterDeletionInput(moonName);
+        deleteCelestialBody();
     }
 
 }
