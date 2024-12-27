@@ -1,3 +1,5 @@
 .vscode
 planetarium.db
 Planetarium.jar
+target
+target/*
