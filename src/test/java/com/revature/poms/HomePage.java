@@ -3,7 +3,6 @@ package com.revature.poms;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -48,17 +47,40 @@ public class HomePage {
     @FindBy(tagName = "tr")
     private List<WebElement> tableRows;
 
-    public HomePage(WebDriver driver){
+    public HomePage(WebDriver driver)
+    {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public String getHomePageGreeting(){
+    public String getHomePageGreeting()
+    {
         return greetingHeader.getText();
     }
 
-    public int getNumberOfCelestialRows(){
+    public int getNumberOfCelestialRows()
+    {
         return tableRows.size()-1;
+    }
+    
+    public int getNumberOfPlanetRows()
+    {
+        int planetCount = 0;
+        for (WebElement row : tableRows)
+        {
+            System.out.println(row.getText());
+        }
+        return planetCount;
+    }
+    
+    public int getNumberOfMoonRows()
+    {
+        int moonCount = 0;
+        for (WebElement row : tableRows)
+        {
+            
+        }
+        return moonCount;
     }
 
     public void tryToAccessHomePageDirectly(){
@@ -133,20 +155,6 @@ public class HomePage {
     public void deleteCelestialBody() 
     {
         deleteButton.click();
-    }
-
-    public void deletePlanet(String planetName)
-    {
-        selectCelestialBody("planet");
-        enterDeletionInput(planetName);
-        deleteCelestialBody();
-    }
-
-    public void deleteMoon(String moonName)
-    {
-        selectCelestialBody("moon");
-        enterDeletionInput(moonName);
-        deleteCelestialBody();
     }
 
 }

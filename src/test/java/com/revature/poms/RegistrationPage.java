@@ -22,6 +22,11 @@ public class RegistrationPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+    
+    public void openRegisterPage()
+    {
+        driver.get("http://localhost:8080/register");
+    }
 
     public void enterUsername(String username){
         usernameInput.sendKeys(username);
