@@ -44,6 +44,9 @@ public class HomePage {
     @FindBy(id = "deleteButton")
     private WebElement deleteButton;
 
+    @FindBy(tagName = "pre")
+    private WebElement loginFirstMessage;
+
     @FindBy(tagName = "tr")
     private List<WebElement> tableRows;
 

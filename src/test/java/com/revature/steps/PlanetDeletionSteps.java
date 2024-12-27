@@ -2,6 +2,7 @@ package com.revature.steps;
 
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.revature.TestRunner;
@@ -38,8 +39,8 @@ public class PlanetDeletionSteps {
     @Then("the table of planets and moon will refresh")
     public void the_table_of_planets_and_moon_will_refresh() throws InterruptedException
     {
-        //TestRunner.wait.until(ExpectedConditions.refreshed(
-        //    TestRunner.driver.findElement(By.id("celestialTable"))));
+        TestRunner.wait.until(ExpectedConditions.visibilityOf(
+            TestRunner.driver.findElement(By.id("celestialTable"))));
     }
 
     @Then("the user should not see the deleted planet")

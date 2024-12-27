@@ -45,8 +45,8 @@ public class MoonCreationSteps {
     @Then("the table of planets and moons will refresh")
     public void the_table_of_planets_and_moons_will_refresh() throws InterruptedException
     {
-        //TestRunner.wait.until(ExpectedConditions.refreshed(
-        //    TestRunner.driver.findElement(By.id("celestialTable"))));
+        TestRunner.wait.until(ExpectedConditions.visibilityOf(
+            TestRunner.driver.findElement(By.id("celestialTable"))));
     }
 
     @Then("the user should see the newly created planet")

@@ -1,7 +1,9 @@
 package com.revature.steps.hooks;
 
+import com.revature.TestRunner;
 import com.revature.utility.Setup;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
 public class Hooks {
@@ -16,6 +18,13 @@ public class Hooks {
     public void resetDatabase(){
         System.out.println("resetDatabase hook called");
         Setup.resetTestDatabase();
+    }
+
+    @After
+    public void logout()
+    {
+        System.out.println("logging out...");
+        TestRunner.homePage.logout();
     }
 
 }
