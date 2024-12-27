@@ -2,13 +2,13 @@
 Feature: Planet Deletion
     As a user I want to delete planets to the Planetarium so I can correct my findings
 
-    Scenerio Background: Planet Deletion Actions
-        Given   the user has logined
+    Background: Planet Deletion Starting Actions
+        Given   the user has logged in
         And     the user is on the home page
 
     @PR4 @MR5
     Scenario: Users delete a planet that they created
-        When    the user provides a valid planet name, "<planet_name>"
+        When    the user provides a planet name, "<planetName>" to delete
         And     the user delete the planet
         Then    the table of planets and moon will refresh
         And     the user should not see the deleted planet
@@ -16,17 +16,17 @@ Feature: Planet Deletion
         And     the user should stay at the home page
 
     Examples:
-    |planet_name           |moon_name   |
-    |landofwindandshade    |            |
-    |landoffrogsandsnow413 |prospit1025 |
+    |planetName                     |moonName      |
+    |Land of Snow and Frogs_1025    |              |
+    |Land of Snow and Frogs_1025    |Pr0spit_ 1025 |
 
     @PR4
     Scenario Outline: Users can not delete a planet that is non-existent
-        When    the user provides a planet name, "<planet_name>"
+        When    the user provides a planet name, "<planetName>"
         And     the user delete the planet
-        Then    the user should get a browser alert "<alert_msg_planet_creation>"
+        Then    the user should get a browser alert "<alertString>"
         And     the user should stay at the home page
 
     Examples:
-    |planet_name        |
-    |landoffrogsandsnow |
+    |planetName         |alertString         |
+    |landoffrogsandsnow |Invalid planet name |

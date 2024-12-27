@@ -28,8 +28,23 @@ public class LoginPage {
 
     public void setUpLoggedInUser(){
         driver.get("http://localhost:8080/");
-        usernameInput.sendKeys("Batman");
-        passwordInput.sendKeys("Iamthenight1939");
+        usernameInput.sendKeys("turntableGodhead_612");
+        passwordInput.sendKeys("bArkB3rkBark");
+        loginButton.submit();
+    }
+
+    public void enterUsername(String username)
+    {
+        usernameInput.sendKeys(username);
+    }
+
+    public void enterPassword(String password)
+    {
+        passwordInput.sendKeys(password);
+    }
+
+    public void submitCredentials()
+    {
         loginButton.submit();
     }
 

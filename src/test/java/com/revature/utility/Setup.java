@@ -27,7 +27,7 @@ public class Setup {
                 if (sqlStatement.contains("?")){
                     String type = sqlStatement.contains("moons") ? "moon" : "planet";
                     try(PreparedStatement ps = conn.prepareStatement(sqlStatement)){
-                        byte[] imageData = convertImgToByteArray(String.format("src/test/resources/images/%s-%d.jpg", type, imageCount));
+                        byte[] imageData = convertImgToByteArray(String.format("src/test/resources/images/%s-%d.png", type, imageCount));
                         ps.setBytes(1, imageData);
                         ps.executeUpdate();
                         imageCount = imageCount == 2 ? 1 : 2;

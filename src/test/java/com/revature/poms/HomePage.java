@@ -72,6 +72,10 @@ public class HomePage {
         for (WebElement row : tableRows)
         {
             System.out.println(row.getText());
+            if (row.getText().equals("moon"))
+            {
+                planetCount++;
+            }
         }
         return planetCount;
     }
@@ -81,7 +85,10 @@ public class HomePage {
         int moonCount = 0;
         for (WebElement row : tableRows)
         {
-            
+            if (row.getText().equals("moon"))
+            {
+                moonCount++;
+            }
         }
         return moonCount;
     }
@@ -90,7 +97,8 @@ public class HomePage {
         driver.get("http://localhost:8080/planetarium");
     }
 
-    public void logout(){
+    public void logout()
+    {
         logoutButton.click();
     }
 
@@ -107,7 +115,7 @@ public class HomePage {
 
     public void choosePlanetImage(String filepath)
     {
-        planetImageInput.sendKeys(filepath);
+        planetImageInput.sendKeys("src/test/resouces/images/" + filepath);
     }
 
     public void enterMoonName(String string) 
@@ -117,7 +125,7 @@ public class HomePage {
 
     public void chooseMoonImage(String filepath)
     {
-        moonImageInput.sendKeys(filepath);
+        moonImageInput.sendKeys("src/test/resouces/images/" + filepath);
     }
 
     public void enterPlanetID(String string) 

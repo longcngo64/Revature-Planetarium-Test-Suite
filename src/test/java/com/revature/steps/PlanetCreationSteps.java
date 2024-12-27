@@ -18,26 +18,28 @@ public class PlanetCreationSteps {
         TestRunner.loginPage.setUpLoggedInUser();
     } 
 
-    @Given("the user is on the home page")
-    public void the_user_is_on_the_home_page()
+    @When("the user selects the planet option")
+    public void the_user_selects_the_planet_option()
     {
-        Assert.assertEquals("Home", TestRunner.driver.getTitle());
+        TestRunner.homePage.selectCelestialBody("planet");
     }
     
-    @When("the user provides a planet name {string}")
+    @When("the user provides a planet name, {string}")
     public void the_user_provides_a_planet_name(String planetName) {
         TestRunner.homePage.enterPlanetName(planetName);
     }
 
-    @When("the user optionally provides a file with a filetype {string}")
-    public void the_user_optionally_provides_a_file_with_a_filetype(String filename) {
-        TestRunner.homePage.choosePlanetImage(filename);
+    @When("the user optionally provides a planet image file with a filetype {string}")
+    public void the_user_optionally_provides_a_planet_image_file_with_a_filetype(String filename) {
+
+        if (filename != "") {
+            TestRunner.homePage.choosePlanetImage(filename);
+        }
     }
 
     @When("the user creates a planet")
     public void the_user_creates_a_planet(String planetName)
     {
-        TestRunner.homePage.selectCelestialBody("planet");
         TestRunner.homePage.submitCelestialBody();
     }
 
@@ -54,18 +56,4 @@ public class PlanetCreationSteps {
         Assert.assertEquals(2, TestRunner.homePage.getNumberOfPlanetRows());
     }
 
-    @Then("the user should get a browser alert {string}")
-    public void the_user_should_get_a_browser_alert(String alertString) 
-    {
-        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = TestRunner.driver.switchTo().alert();
-        Assert.assertEquals(alertString, alert.getText());
-        alert.accept();
-    }
-
-    @Then("the user should stay at the home page")
-    public void the_user_should_stay_at_the_home_page()
-    {
-        Assert.assertEquals("Home", TestRunner.driver.getTitle());
-    }
 }

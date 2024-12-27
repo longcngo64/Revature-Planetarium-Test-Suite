@@ -34,7 +34,7 @@ create table users(
 	)
 );
 
-insert into users (username, password) values ('Batman', 'Iamthenight1939');
+insert into users (username, password) values ('turntableGodhead_612', 'bArkB3rkBark');
 
 create table planets(
 	id integer primary key,
@@ -49,8 +49,7 @@ create table planets(
 	)
 );
 
-insert into planets (name, ownerId, image) values ('Earth', 1, ?);
-insert into planets (name, ownerId, image) values ('Mars', 1, ?);
+insert into planets (name, ownerId, image) values ('Land of Snow and Frogs_1025', 1, ?);
 
 create table moons(
 	id integer primary key,
@@ -65,5 +64,4 @@ create table moons(
 	)
 );
 
-insert into moons (name, myPlanetId, image) values ('Luna', 1, ?);
-insert into moons (name, myPlanetId, image) values ('Titan', 2, ?);
+insert into moons (name, myPlanetId, image) values ('Pr0spit_ 1025', 1, ?);

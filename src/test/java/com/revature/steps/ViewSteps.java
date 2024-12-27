@@ -14,19 +14,15 @@ public class ViewSteps {
 
     @Given("the user is logged in")
     public void the_user_is_logged_in() {
-        TestRunner.loginPage.setUpLoggedInUser();
+        if (TestRunner.driver.getTitle().equals("Planetarium Login")) {
+            TestRunner.loginPage.setUpLoggedInUser();
+        }
     }
 
     @Given("the user is on the home page")
     public void the_user_is_on_the_home_page()
     {
         Assert.assertEquals("Home", TestRunner.driver.getTitle());
-    }
-
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page()
-    {
-        TestRunner.loginPage.openLoginPage();
     }
 
     @When("the user tries to go to the home page directly")
@@ -41,12 +37,12 @@ public class ViewSteps {
         TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
         Assert.assertEquals(
             String.format(
-                    "Expected 'Welcome to the Home Page Batman, but got %s",
+                    "Expected 'Welcome to the Home Page turntableGodhead_612, but got %s",
                     TestRunner.homePage.getHomePageGreeting()
             ),
-            "Welcome to the Home Page Batman",
+            "Welcome to the Home Page turntableGodhead_612",
             TestRunner.homePage.getHomePageGreeting());
-        Assert.assertEquals(4, TestRunner.homePage.getNumberOfCelestialRows());
+        Assert.assertEquals(2, TestRunner.homePage.getNumberOfCelestialRows());
        
     }
 

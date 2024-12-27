@@ -1,72 +1,50 @@
 package com.revature.steps;
 
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.revature.TestRunner;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class MoonCreationSteps {
-    @Given("the user has logged in")
-    public void the_user_has_logged_in()
+public class MoonCreationSteps
+{
+    @When("the user selects the moon option")
+    public void the_user_selects_the_moon_option()
     {
-        TestRunner.loginPage.setUpLoggedInUser();
-    } 
-
-    @Given("the user is on the home page")
-    public void the_user_is_on_the_home_page()
-    {
-        Assert.assertEquals("Home", TestRunner.driver.getTitle());
+        TestRunner.homePage.selectCelestialBody("moon");
     }
-    
+
     @When("the user provides a moon name {string}")
     public void the_user_provides_a_moon_name(String moonName)
     {
         TestRunner.homePage.enterMoonName(moonName);
     }
-
-    @When("the user optionally provides a file with a filetype {string}")
-    public void the_user_optionally_provides_a_file_with_a_filetype(String filename)
+    
+    @When("the user provides a planet id {string}")
+    public void the_user_provides_a_planet_id(String planetID)
     {
-        TestRunner.homePage.chooseMoonImage(filename);
+        TestRunner.homePage.enterPlanetID(planetID);
+    }
+
+    @When("the user optionally provides a moon image file with a filetype {string}")
+    public void the_user_optionally_provides_a_moon_image_file_with_a_filetype(String filename)
+    {
+        if (filename != "") {
+            TestRunner.homePage.chooseMoonImage(filename);
+        }
     }
 
     @When("the user creates a moon")
-    public void the_user_creates_a_moon(String moonName)
+    public void the_user_creates_a_moon()
     {
-        TestRunner.homePage.selectCelestialBody("moon");
         TestRunner.homePage.submitCelestialBody();
     }
 
-    @Then("the table of planets and moons will refresh")
-    public void the_table_of_planets_and_moons_will_refresh() throws InterruptedException
+    @Then("the user should see the newly created moon")
+    public void the_user_should_see_the_newly_created_moon()
     {
-        TestRunner.wait.until(ExpectedConditions.visibilityOf(
-            TestRunner.driver.findElement(By.id("celestialTable"))));
+        Assert.assertEquals(3, TestRunner.homePage.getNumberOfMoonRows());
     }
-
-    @Then("the user should see the newly created planet")
-    public void the_user_should_see_the_newly_created_planet(String planetName)
-    {
-        Assert.assertEquals(2, TestRunner.homePage.getNumberOfMoonRows());
-    }
-
-    @Then("the user should get a browser alert {string}")
-    public void the_user_should_get_a_browser_alert(String alertString) 
-    {
-        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = TestRunner.driver.switchTo().alert();
-        Assert.assertEquals(alertString, alert.getText());
-        alert.accept();
-    }
-
-    @Then("the user should stay at the home page")
-    public void the_user_should_stay_at_the_home_page()
-    {
-        Assert.assertEquals("Home", TestRunner.driver.getTitle());
-    }
+    
 }

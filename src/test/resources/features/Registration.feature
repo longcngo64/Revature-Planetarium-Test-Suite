@@ -8,27 +8,27 @@ Feature: User Registration
         And     the user clicks the register link
 
     Scenario: Users can register a new account with valid credentials
-        When    the user provides a valid username, "<username>"
-        And     the user provides a valid password, "<password>"
+        When    the user provides a username for registration "<username>"
+        And     the user provides a password for registration "<password>"
         And     the user submits the credentials
-        Then    the user should get a browser alert, "<alert>", saying "Account created successfully"
+        Then    the user should get a browser alert "<alertString>"
         And     the user should be redirected to the login page
 
     Examples:
-    |username          |password         |alert                        |
+    |username          |password         |alertString                  |
     |ectoBiologist_413 | noarms2009_haha |Account created successfully |
 
     # these tags will apply to each run of the Scenario Outline determined by the Examples table data
     @UR1 @UR2 @UR3 @UR4 @UR5 @UR6
     Scenario Outline: Users can not register a new account with invalid credentials
-        When    the user provides username "<username>"
-        And     the user provides password "<password>"
+        When    the user provides a username for registration "<username>"
+        And     the user provides a password for registration "<password>"
         And     the user submits the credentials
-        Then    the user should get a browser alert saying "<alert>"
+        Then    the user should get a browser alert "<alertString>"
         And     the user should stay on the registration page
 
     Examples:
-    |username                                    |password                           |alert            |
+    |username                                    |password                           |alertString            |
     |turntableGodhead                            |noarms2009_haha                    |Invalid username |
     |john                                        |noarms2009_haha                    |Invalid username |
     |mynamewillneverbezoosmellpooplordorwhatever |noarms2009_haha                    |Invalid username |

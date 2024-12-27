@@ -18,7 +18,7 @@ import java.time.Duration;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "classpath:features",
+        features = "src/test/resources/features",
         glue = "com.revature.steps",
         plugin = {
                 "pretty",
@@ -26,7 +26,8 @@ import java.time.Duration;
                 "json:src/test/resources/reports/json-report.json"
         }
 )
-public class TestRunner {
+public class TestRunner 
+{
 
     public static WebDriver driver = null;
     public static WebDriverWait wait;
